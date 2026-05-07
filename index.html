@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IDIS 240 — Course Portfolio — Ephraim Dykstra</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:         #0c0906;
+  --bg2:        #141009;
+  --card:       #1c150c;
+  --card2:      #261d12;
+  --gold:       #c9913f;
+  --gold-l:     #e8b96a;
+  --terra:      #c4572a;
+  --green:      #3d6b4a;
+  --green-l:    #5a9a6e;
+  --cream:      #edd9b5;
+  --cream-d:    #b09a7a;
+  --muted:      #6a5840;
+  --border:     #2a1e10;
+  --border-l:   #3a2e1e;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--cream);font-family:'Inter',sans-serif;line-height:1.7;overflow-x:hidden}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(12,9,6,.93);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 2rem}
+.nav-brand{font-family:'Playfair Display',serif;color:var(--gold);font-size:1rem;font-weight:600;white-space:nowrap}
+.nav-links{display:flex;gap:.2rem;list-style:none}
+.nav-links a{color:var(--cream-d);text-decoration:none;font-size:.72rem;font-weight:500;padding:.3rem .55rem;border-radius:4px;transition:all .2s;text-transform:uppercase;letter-spacing:.05em}
+.nav-links a:hover,.nav-links a.active{color:var(--gold);background:rgba(201,145,63,.12)}
+
+/* ── UTIL ── */
+.section{padding:110px 2rem 80px;max-width:1160px;margin:0 auto}
+.section-label{font-size:.72rem;text-transform:uppercase;letter-spacing:.14em;color:var(--terra);font-weight:600;margin-bottom:.6rem}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);color:var(--gold-l);line-height:1.2;margin-bottom:1rem}
+.section-sub{color:var(--cream-d);font-size:1rem;max-width:660px;margin-bottom:3rem}
+.tag{display:inline-block;background:rgba(201,145,63,.12);color:var(--gold);font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.2rem .6rem;border-radius:3px;border:1px solid rgba(201,145,63,.25)}
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.6rem;transition:border-color .25s,transform .2s}
+.card:hover{border-color:var(--border-l)}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
+@media(max-width:900px){.grid-3,.grid-4{grid-template-columns:1fr 1fr}.grid-2{grid-template-columns:1fr}}
+@media(max-width:600px){.grid-3,.grid-4{grid-template-columns:1fr}.nav-links{display:none}}
+.fade-in{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.fade-in.visible{opacity:1;transform:none}
+.divider{width:60px;height:3px;background:linear-gradient(90deg,var(--terra),var(--gold));border-radius:2px;margin:1.2rem 0 2rem}
+
+/* ── HERO ── */
+#hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;background:radial-gradient(ellipse at 35% 55%,#1e0e05 0%,var(--bg) 65%)}
+#hero canvas{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;opacity:.35}
+.hero-inner{position:relative;z-index:2;max-width:780px;padding:2rem}
+.hero-eyebrow{font-size:.78rem;text-transform:uppercase;letter-spacing:.2em;color:var(--terra);font-weight:600;margin-bottom:1.2rem}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,6vw,4.2rem);line-height:1.15;color:var(--cream);margin-bottom:.8rem}
+.hero-title span{color:var(--gold)}
+.hero-sub{color:var(--cream-d);font-size:1.05rem;margin-bottom:.6rem}
+.hero-meta{color:var(--muted);font-size:.85rem;margin-bottom:2.8rem}
+.hero-cta{display:inline-block;background:linear-gradient(135deg,var(--terra),var(--gold));color:#fff;text-decoration:none;padding:.75rem 2rem;border-radius:6px;font-weight:600;font-size:.9rem;letter-spacing:.04em;transition:opacity .2s,transform .2s}
+.hero-cta:hover{opacity:.88;transform:translateY(-2px)}
+.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);color:var(--muted);font-size:.78rem;display:flex;flex-direction:column;align-items:center;gap:.4rem;animation:bounce 2s infinite}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
+.scroll-arrow{width:20px;height:20px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg)}
+
+/* ── WHAT IS ARCHAEOLOGY ── */
+.def-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem}
+.def-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:2rem;position:relative;overflow:hidden}
+.def-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px}
+.def-card.arch::before{background:linear-gradient(90deg,var(--green),var(--gold))}
+.def-card.pseudo::before{background:linear-gradient(90deg,var(--terra),#8b0000)}
+.def-icon{font-size:2.2rem;margin-bottom:.8rem}
+.def-card h3{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--gold-l);margin-bottom:.6rem}
+.def-card p{color:var(--cream-d);font-size:.9rem}
+.theory-grid{display:grid;grid-template-columns:1fr 48px 1fr;gap:0;align-items:stretch}
+.theory-card{background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:1.8rem}
+.theory-card h4{font-family:'Playfair Display',serif;color:var(--gold);margin-bottom:.5rem;font-size:1.05rem}
+.theory-pill{display:inline-block;font-size:.72rem;font-weight:600;padding:.2rem .6rem;border-radius:3px;margin-bottom:.8rem}
+.theory-pill.proc{background:rgba(61,107,74,.3);color:var(--green-l);border:1px solid rgba(61,107,74,.4)}
+.theory-pill.post{background:rgba(196,87,42,.2);color:#e07a4a;border:1px solid rgba(196,87,42,.35)}
+.vs-divider{display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;color:var(--muted);font-size:1.3rem;font-style:italic}
+
+/* ── TIMELINE ── */
+#history{background:var(--bg2);max-width:100%;padding:110px 0 80px}
+.timeline-wrap{max-width:1160px;margin:0 auto;padding:0 2rem}
+.timeline{position:relative;padding:2rem 0}
+.timeline::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:2px;background:linear-gradient(var(--border),var(--gold),var(--border));transform:translateX(-50%)}
+.t-item{display:grid;grid-template-columns:1fr 60px 1fr;gap:0;margin-bottom:2.5rem;align-items:start}
+.t-item.right .t-content-left{visibility:hidden}
+.t-item.left .t-content-right{visibility:hidden}
+.t-content-left,.t-content-right{padding:0 2rem}
+.t-content-left{text-align:right}
+.t-dot-wrap{display:flex;align-items:flex-start;justify-content:center;padding-top:.4rem}
+.t-dot{width:14px;height:14px;background:var(--gold);border-radius:50%;border:2px solid var(--bg2);box-shadow:0 0 0 3px rgba(201,145,63,.25);flex-shrink:0}
+.t-year{font-size:.75rem;color:var(--terra);font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.25rem}
+.t-name{font-family:'Playfair Display',serif;color:var(--gold-l);font-size:1rem;margin-bottom:.3rem}
+.t-desc{color:var(--cream-d);font-size:.85rem;line-height:1.5}
+@media(max-width:700px){.timeline::before{left:24px}.t-item{grid-template-columns:48px 1fr}.t-item .t-content-left{display:none}.t-item.right .t-content-left{display:none}.t-content-right{visibility:visible!important;padding-left:1rem}}
+
+/* ── RECORD ── */
+.record-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-bottom:3rem}
+.record-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.5rem;text-align:center;transition:border-color .25s,transform .2s,box-shadow .2s;cursor:default}
+.record-card:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:0 12px 30px rgba(201,145,63,.1)}
+.record-icon{font-size:2.4rem;margin-bottom:.8rem}
+.record-card h3{font-family:'Playfair Display',serif;color:var(--gold-l);font-size:1rem;margin-bottom:.5rem}
+.record-card p{color:var(--cream-d);font-size:.83rem;line-height:1.5}
+.context-box{background:var(--card2);border:1px solid var(--gold);border-radius:10px;padding:2rem;position:relative}
+.context-box::before{content:'"CONTEXT"';position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--bg);font-size:.72rem;font-weight:700;letter-spacing:.12em;padding:.2rem .8rem;border-radius:3px}
+.context-parts{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1rem}
+.ctx-part{text-align:center}
+.ctx-part strong{display:block;color:var(--gold);font-size:.85rem;margin-bottom:.25rem}
+.ctx-part span{color:var(--cream-d);font-size:.8rem}
+
+/* ── FIELDWORK ── */
+.fw-steps{display:flex;flex-direction:column;gap:1rem}
+.fw-step{display:grid;grid-template-columns:48px 1fr;gap:1.2rem;align-items:start}
+.fw-num{width:48px;height:48px;background:linear-gradient(135deg,var(--terra),var(--gold));border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.1rem;color:#fff;flex-shrink:0}
+.fw-step h4{color:var(--cream);font-size:.95rem;margin-bottom:.3rem}
+.fw-step p{color:var(--cream-d);font-size:.85rem}
+.methods-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:2rem}
+.method-card{background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:1.3rem}
+.method-card .method-tag{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--green-l);font-weight:600;margin-bottom:.4rem}
+.method-card h4{color:var(--gold-l);font-size:.9rem;margin-bottom:.4rem;font-family:'Playfair Display',serif}
+.method-card p{color:var(--cream-d);font-size:.8rem}
+
+/* ── DATING ── */
+.dating-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.dating-col h3{font-family:'Playfair Display',serif;color:var(--gold-l);font-size:1.2rem;margin-bottom:1.2rem;padding-bottom:.6rem;border-bottom:1px solid var(--border)}
+.dating-item{display:flex;gap:1rem;margin-bottom:1.2rem;align-items:flex-start}
+.dating-dot{width:8px;height:8px;background:var(--gold);border-radius:50%;margin-top:.55rem;flex-shrink:0}
+.dating-item h4{color:var(--cream);font-size:.88rem;margin-bottom:.2rem}
+.dating-item p{color:var(--cream-d);font-size:.8rem}
+.c14-visual{background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:1.5rem;margin-top:2rem}
+.c14-title{color:var(--gold);font-size:.85rem;font-weight:600;margin-bottom:1rem;text-align:center}
+.c14-bar-wrap{margin-bottom:.6rem}
+.c14-bar-label{display:flex;justify-content:space-between;font-size:.72rem;color:var(--cream-d);margin-bottom:.3rem}
+.c14-bar{height:10px;background:var(--border-l);border-radius:5px;overflow:hidden}
+.c14-fill{height:100%;background:linear-gradient(90deg,var(--terra),var(--gold));border-radius:5px;transition:width 1.5s ease}
+
+/* ── WHO'S DEAD GAME ── */
+#whos-dead{background:var(--bg2);max-width:100%;padding:110px 0 80px}
+.game-wrap{max-width:1160px;margin:0 auto;padding:0 2rem}
+.game-header{text-align:center;margin-bottom:3rem}
+.game-layout{display:grid;grid-template-columns:280px 1fr;gap:1.5rem;align-items:start}
+.case-list{display:flex;flex-direction:column;gap:.8rem}
+.case-btn{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1rem 1.2rem;text-align:left;cursor:pointer;transition:all .2s;width:100%}
+.case-btn:hover,.case-btn.active{background:var(--card2);border-color:var(--gold)}
+.case-btn .case-num{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--terra);font-weight:600}
+.case-btn .case-name{color:var(--cream);font-size:.88rem;font-weight:500;margin-top:.15rem}
+.case-btn .case-status{font-size:.7rem;color:var(--muted);margin-top:.15rem}
+.case-btn.solved .case-status{color:var(--green-l)}
+.case-panel{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;min-height:500px}
+.case-panel-header{background:var(--card2);border-bottom:1px solid var(--border);padding:1.5rem;display:flex;align-items:center;gap:1rem}
+.case-stamp{background:var(--terra);color:#fff;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:.3rem .7rem;border-radius:3px}
+.case-panel-title{font-family:'Playfair Display',serif;color:var(--gold-l);font-size:1.2rem}
+.case-panel-body{padding:1.8rem}
+.clue-section{margin-bottom:1.5rem}
+.clue-section-label{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--terra);font-weight:600;margin-bottom:.7rem;display:flex;align-items:center;gap:.5rem}
+.clue-section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.clue-list{display:flex;flex-direction:column;gap:.5rem}
+.clue-chip{background:var(--bg2);border:1px solid var(--border-l);border-radius:6px;padding:.6rem 1rem;font-size:.82rem;color:var(--cream-d);display:flex;align-items:flex-start;gap:.6rem;animation:clue-in .3s ease}
+@keyframes clue-in{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
+.clue-chip::before{content:'⬥';color:var(--gold);font-size:.6rem;margin-top:.25rem;flex-shrink:0}
+.game-actions{display:flex;gap:.8rem;margin-top:1.5rem;flex-wrap:wrap}
+.btn{padding:.65rem 1.4rem;border-radius:6px;font-size:.85rem;font-weight:600;cursor:pointer;border:none;transition:all .2s;letter-spacing:.03em}
+.btn-primary{background:linear-gradient(135deg,var(--terra),var(--gold));color:#fff}
+.btn-primary:hover{opacity:.88;transform:translateY(-1px)}
+.btn-secondary{background:transparent;color:var(--cream-d);border:1px solid var(--border-l)}
+.btn-secondary:hover{border-color:var(--gold);color:var(--gold)}
+.reveal-panel{display:none;background:var(--bg2);border:1px solid var(--green);border-radius:10px;padding:1.8rem;margin-top:1.2rem;animation:reveal-in .4s ease}
+@keyframes reveal-in{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:none}}
+.reveal-panel.show{display:block}
+.reveal-name{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--gold-l);margin-bottom:.4rem}
+.reveal-period{color:var(--terra);font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.8rem}
+.reveal-desc{color:var(--cream-d);font-size:.88rem;line-height:1.7}
+.reveal-connection{margin-top:1rem;padding:.8rem 1rem;background:rgba(61,107,74,.15);border-left:3px solid var(--green);border-radius:0 6px 6px 0;font-size:.82rem;color:var(--cream-d)}
+.score-bar{display:flex;gap:1rem;justify-content:center;margin-top:2rem;flex-wrap:wrap}
+.score-item{text-align:center}
+.score-num{font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold);display:block}
+.score-label{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+@media(max-width:760px){.game-layout{grid-template-columns:1fr}.case-list{flex-direction:row;overflow-x:auto;padding-bottom:.5rem}.case-btn{min-width:160px}}
+
+/* ── WIDER TOPICS ── */
+.topic-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.topic-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.5rem;transition:border-color .25s}
+.topic-card:hover{border-color:var(--border-l)}
+.topic-emoji{font-size:1.8rem;margin-bottom:.7rem}
+.topic-card h4{font-family:'Playfair Display',serif;color:var(--gold-l);font-size:.95rem;margin-bottom:.5rem}
+.topic-card p{color:var(--cream-d);font-size:.82rem;line-height:1.6}
+
+/* ── FAITH SECTION ── */
+.faith-box{background:var(--card2);border:1px solid var(--border);border-radius:12px;padding:2.2rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.faith-col h4{font-family:'Playfair Display',serif;color:var(--gold-l);font-size:1.05rem;margin-bottom:.8rem}
+.faith-col p{color:var(--cream-d);font-size:.85rem;line-height:1.7}
+.faith-quote{border-left:3px solid var(--gold);padding-left:1rem;margin-top:1rem;font-style:italic;color:var(--cream-d);font-size:.85rem}
+
+/* ── LAB ── */
+.lab-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.lab-hours{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem}
+.lab-hour{width:38px;height:38px;background:var(--green);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;color:#fff}
+
+/* ── REFLECTION ── */
+.reflection-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.2rem}
+.reflection-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.6rem}
+.reflection-num{font-family:'Playfair Display',serif;font-size:3rem;color:rgba(201,145,63,.2);line-height:1;margin-bottom:.5rem}
+.reflection-card h4{color:var(--cream);font-size:.92rem;margin-bottom:.5rem}
+.reflection-card p{color:var(--cream-d);font-size:.82rem;line-height:1.6}
+
+/* ── FOOTER ── */
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 2rem;text-align:center}
+.footer-title{font-family:'Playfair Display',serif;color:var(--gold);font-size:1.1rem;margin-bottom:.5rem}
+.footer-meta{color:var(--muted);font-size:.8rem;line-height:1.8}
+.footer-ai{margin-top:1.5rem;padding:1rem 1.5rem;background:var(--card);border-radius:8px;border:1px solid var(--border);display:inline-block;font-size:.75rem;color:var(--muted)}
+
+/* ── ANIMATIONS ── */
+@keyframes shimmer{0%,100%{opacity:1}50%{opacity:.6}}
+.highlight{color:var(--gold);font-weight:500}
+strong{color:var(--cream);font-weight:600}
+.pill{display:inline-block;background:rgba(201,145,63,.1);color:var(--gold);font-size:.72rem;padding:.15rem .5rem;border-radius:3px;margin:.15rem .15rem .15rem 0;border:1px solid rgba(201,145,63,.2)}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-brand">⛏ IDIS 240 Portfolio</span>
+  <ul class="nav-links">
+    <li><a href="#what">What</a></li>
+    <li><a href="#history">History</a></li>
+    <li><a href="#record">Record</a></li>
+    <li><a href="#fieldwork">Field</a></li>
+    <li><a href="#dating">Dating</a></li>
+    <li><a href="#whos-dead">Game</a></li>
+    <li><a href="#topics">Topics</a></li>
+    <li><a href="#faith">Faith</a></li>
+    <li><a href="#reflection">Reflect</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-inner fade-in">
+    <div class="hero-eyebrow">Calvin University — Spring 2026</div>
+    <h1 class="hero-title">
+      <span>Introduction to</span><br>Archaeology
+    </h1>
+    <p class="hero-sub">IDIS 240 — Course Portfolio &amp; Study Journal</p>
+    <p class="hero-meta">Ephraim Dykstra &nbsp;·&nbsp; Prof. Darrell Rohl &nbsp;·&nbsp; Hiemenga Hall 334</p>
+    <a href="#what" class="hero-cta">Explore the Portfolio</a>
+  </div>
+  <div class="scroll-hint">
+    <span>Scroll to dig in</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- WHAT IS ARCHAEOLOGY -->
+<section id="what" class="section">
+  <div class="section-label fade-in">Foundations</div>
+  <h2 class="section-title fade-in">What Is Archaeology?</h2>
+  <p class="section-sub fade-in">The study of the human past through physical remains. Not just digging — a rigorous blend of science, humanities, and interpretation that recovers human stories writing alone can't tell.</p>
+  <div class="divider fade-in"></div>
+
+  <div class="def-grid fade-in">
+    <div class="def-card arch">
+      <div class="def-icon">🏺</div>
+      <h3>Archaeology</h3>
+      <p><strong>The study of the Human Past.</strong> Starts with <strong>evidence</strong>, builds a claim. Examines material culture — what people left behind — to construct honest, evidence-based histories of the past. It is both a science and a humanity, operating across every period of human existence.</p>
+      <br>
+      <p style="font-size:.78rem;color:var(--muted)">Key insight from Day 2: <em>"For about 97% of human existence, archaeology is the only way to recover the human story — writing hadn't been invented yet."</em></p>
+    </div>
+    <div class="def-card pseudo">
+      <div class="def-icon">🚫</div>
+      <h3>Pseudo-archaeology</h3>
+      <p>Starts with an <strong>idea</strong>, cherry-picks evidence to defend it. Examples: ancient astronaut theories, Atlantis claims, and racially motivated alternative histories. Pseudo-archaeology undermines real heritage by promoting myths over evidence.</p>
+      <br>
+      <p style="font-size:.78rem;color:var(--muted)">The increasing ignorance framing: aliens built the pyramids; Atlantis explains human development. Each claim a failure of evidence-based reasoning.</p>
+    </div>
+  </div>
+
+  <div class="theory-grid fade-in" style="margin-top:1.5rem">
+    <div class="theory-card">
+      <span class="theory-pill proc">Processual / "New" Archaeology</span>
+      <h4>Science-First Approach</h4>
+      <p style="font-size:.85rem;color:var(--cream-d)">Associated with Lewis Binford (1960s–70s). Argues archaeology can discover universal laws of human behavior through scientific method. Culture Process is knowable and testable. Sometimes criticized for <em>over-scientizing</em> human behavior — treating people like variables rather than agents.</p>
+    </div>
+    <div class="vs-divider">vs.</div>
+    <div class="theory-card">
+      <span class="theory-pill post">Post-Processual Archaeology</span>
+      <h4>Interpretive Approach</h4>
+      <p style="font-size:.85rem;color:var(--cream-d)">Associated with Ian Hodder, Shanks &amp; Tilley (1980s). Emphasizes subjectivity, symbolism, and plural interpretations. <em>"The data doesn't say anything — we say things using data."</em> Recognizes that archaeologists bring their own perspectives to interpretation. Archaeology is not just a science.</p>
+    </div>
+  </div>
+  <style>
+    @media(max-width:700px){
+      .theory-grid{grid-template-columns:1fr!important}
+      .vs-divider{padding:.5rem 0}
+    }
+  </style>
+</section>
+
+<!-- HISTORY TIMELINE -->
+<section id="history" style="background:var(--bg2);max-width:100%;padding:110px 0 80px">
+  <div class="timeline-wrap">
+    <div class="section-label fade-in">Disciplinary History</div>
+    <h2 class="section-title fade-in">The Story of Archaeology</h2>
+    <p class="section-sub fade-in">From ancient kings collecting artifacts to satellite imagery and LiDAR — archaeology evolved through major ideas, methods, and personalities.</p>
+    <div class="divider fade-in"></div>
+
+    <div class="timeline fade-in">
+
+      <div class="t-item left">
+        <div class="t-content-left">
+          <div class="t-year">c. 550 BCE</div>
+          <div class="t-name">Nabonidus</div>
+          <div class="t-desc">Last king of the Neo-Babylonian Empire. Ordered excavation of ancient temples in Iraq and Turkey, restored them, and displayed artifacts in a museum. Often called the <em>Father of Archaeology</em>.</div>
+        </div>
+        <div class="t-dot-wrap"><div class="t-dot"></div></div>
+        <div class="t-content-right"></div>
+      </div>
+
+      <div class="t-item right">
+        <div class="t-content-left"></div>
+        <div class="t-dot-wrap"><div class="t-dot"></div></div>
+        <div class="t-content-right">
+          <div class="t-year">c. 320 CE</div>
+          <div class="t-name">Helena Augusta</div>
+          <div class="t-desc">Mother of Constantine the Great. Traveled the Holy Land identifying pilgrimage sites and seeking Christian relics. Patron Saint of Archaeologists. Theory: Constantine's interest in Christianity was partly shaped by his mother's faith.</div>
+        </div>
+      </div>
+
+      <div class="t-item left">
+        <div class="t-content-left">
+          <div class="t-year">16th–17th c.</div>
+          <div class="t-name">Cabinets of Curiosities &amp; British Antiquarians</div>
+          <div class="t-desc">Rooms filled with artifacts, relics, and rarities owned by wealthy men — early proto-museums. Chorographers like Sir Robert Sibbald (who first used the word "Archaeologie") studied regional culture, geography, and history, developing early survey methods.</div>
+        </div>
+        <div class="t-dot-wrap"><div class="t-dot"></div></div>
+        <div class="t-content-right"></div>
+      </div>
+
+      <div class="t-item right">
+        <div class="t-content-left"></div>
+        <div class="t-dot-wrap"><div class="t-dot"></div></div>
+        <div class="t-content-right">
+          <div class="t-year">1748</div>
+          <div class="t-name">Pompeii Excavations Begin</div>
+          <div class="t-desc">The first intentional excavation conducted to seek historical information — not just to loot. Marks the transition from treasure-hunting to structured inquiry into the past.</div>
+        </div>
+      </div>
+
+      <div class="t-item left">
+        <div class="t-content-left">
+          <div class="t-year">1784</div>
+          <div class="t-name">Thomas Jefferson — First Scientific Excavation</div>
+          <div class="t-desc">On his Monticello estate, Jefferson noticed unusual mounds. He excavated them methodically, observing that layers were different — recognizing <strong>stratigraphy</strong> for the first time. The mounds proved to be Native American burial sites. This is the first excavation to use what became standard archaeological practice.</div>
+        </div>
+        <div class="t-dot-wrap"><div class="t-dot"></div></div>
+        <div class="t-content-right"></div>
+      </div>
+
+      <div class="t-item right">
+        <div class="t-content-left"></div>
+        <div class="t-dot-wrap"><div class="t-dot"></div></div>
+        <div class="t-content-right">
+          <div class="t-year">1836</div>
+          <div class="t-name">C.J. Thomsen — The Three Age System</div>
+          <div class="t-desc">Danish archaeologist who organized Copenhagen museum collections into Stone, Bronze, and Iron Ages based on material culture. Created the foundational chronological framework for prehistoric archaeology — still used today.</div>
+        </div>
+      </div>
+
+      <div class="t-item left">
+        <div class="t-content-left">
+          <div class="t-year">1859</div>
+          <div class="t-name">Darwin &amp; Deep Time</div>
+          <div class="t-desc"><em>On the Origin of Species</em> established evolution by natural selection. Combined with geological evidence of an ancient Earth, this gave archaeology the deep time framework it required: humans have existed far longer than any written record suggests.</div>
+        </div>
+        <div class="t-dot-wrap"><div class="t-dot"></div></div>
+        <div class="t-content-right"></div>
+      </div>
+
+      <div class="t-item right">
+        <div class="t-content-left"></div>
+        <div class="t-dot-wrap"><div class="t-dot"></div></div>
+        <div class="t-content-right">
+          <div class="t-year">20th Century</div>
+          <div class="t-name">Wheeler &amp; Kenyon — Grid Excavation</div>
+          <div class="t-desc">Mortimer Wheeler developed the box-grid method (retaining earthen balks for stratigraphic profiles). Kathleen Kenyon refined it at Jericho — and in the process pushed the dates of occupation back several centuries, frustrating those who had used Jericho as biblical proof. Her evidence mattered more than the conclusion people hoped for.</div>
+        </div>
+      </div>
+
+      <div class="t-item left">
+        <div class="t-content-left">
+          <div class="t-year">Present</div>
+          <div class="t-name">Digital &amp; Remote Sensing Revolution</div>
+          <div class="t-desc">LiDAR at Caracol (Belize) revealed an entire hidden city through jungle canopy. GPR at Forum Novum mapped buried Roman streets without digging a single trench. GIS integrates spatial data across layers. The way we find and map sites has been transformed.</div>
+        </div>
+        <div class="t-dot-wrap"><div class="t-dot"></div></div>
+        <div class="t-content-right"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- THE ARCHAEOLOGICAL RECORD -->
+<section id="record" class="section">
+  <div class="section-label fade-in">The Material Past</div>
+  <h2 class="section-title fade-in">The Archaeological Record</h2>
+  <p class="section-sub fade-in">Everything left behind by past human activity. The four major categories of evidence — and why the single most important concept in all of archaeology is context.</p>
+  <div class="divider fade-in"></div>
+
+  <div class="record-cards fade-in">
+    <div class="record-card">
+      <div class="record-icon">🏺</div>
+      <h3>Artifacts</h3>
+      <p>Human-made or modified objects that are <strong>portable without machinery</strong>. Pottery, tools, coins, weapons. The most common and most studied category. Ceramics serve as the "chronological backbone" of archaeology — abundant, indestructible, and rapidly changing in style.</p>
+    </div>
+    <div class="record-card">
+      <div class="record-icon">🌿</div>
+      <h3>Ecofacts</h3>
+      <p>Naturally occurring biological or non-biological materials found <strong>in association with human activity</strong>. Seeds, pollen, animal bones, soils. Ecofacts reveal ancient diets, environments, farming practices, and climate — without humans ever touching them directly.</p>
+    </div>
+    <div class="record-card">
+      <div class="record-icon">🪨</div>
+      <h3>Features</h3>
+      <p>Human-made traces <strong>not designed to be portable</strong>. Hearths, pits, postholes, ditches, Stonehenge. Features can only be recorded in place — removing them destroys them. They reveal organization, activity patterns, and permanent human modifications to the landscape.</p>
+    </div>
+    <div class="record-card">
+      <div class="record-icon">🏛️</div>
+      <h3>Structures</h3>
+      <p>Human-built architecture with <strong>closed, defined space</strong> — walls and bounded interior. A complex type of feature. Structures range from simple shelters to the great monuments of antiquity, each telling stories of social organization and belief.</p>
+    </div>
+  </div>
+
+  <div class="context-box fade-in">
+    <p style="color:var(--cream);margin-bottom:.5rem;font-size:.95rem"><strong>CONTEXT is the most important concept in archaeology</strong></p>
+    <p style="color:var(--cream-d);font-size:.85rem">Where something is found, and what it is found alongside, are often more important than the object itself. Looting destroys context — and with it, most of what an artifact could tell us.</p>
+    <div class="context-parts">
+      <div class="ctx-part">
+        <strong>Matrix</strong>
+        <span>The physical substance surrounding the find — soil, sediment, deposit type</span>
+      </div>
+      <div class="ctx-part">
+        <strong>Provenience</strong>
+        <span>The exact 3D position within the site — recorded to the centimeter</span>
+      </div>
+      <div class="ctx-part">
+        <strong>Association</strong>
+        <span>The relationship to other finds in the same deposit — what was found together</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:2.5rem" class="fade-in">
+    <h3 style="font-family:'Playfair Display',serif;color:var(--gold-l);margin-bottom:1rem;font-size:1.1rem">Formation Processes: How the Record Forms</h3>
+    <div class="grid-2">
+      <div class="card">
+        <div class="tag" style="margin-bottom:.8rem">C-Transforms</div>
+        <p style="font-size:.85rem;color:var(--cream-d)"><strong>Cultural formation processes</strong> — human activities that create, modify, or destroy the archaeological record. Deliberate burial (hoards, graves), construction, abandonment, reuse, warfare, burning. When a pot is buried intentionally vs. discarded accidentally, the context of that act is archaeologically readable.</p>
+      </div>
+      <div class="card">
+        <div class="tag" style="background:rgba(196,87,42,.12);color:var(--terra);border-color:rgba(196,87,42,.3);margin-bottom:.8rem">N-Transforms</div>
+        <p style="font-size:.85rem;color:var(--cream-d)"><strong>Natural formation processes</strong> — environmental events that alter buried material. Includes <span class="pill">Floralturbation</span> <span class="pill">Faunalturbation</span> <span class="pill">Cryoturbation</span> <span class="pill">Argilliturbation</span> <span class="pill">Graviturbation</span>. Also natural disasters like Vesuvius — which, paradoxically, perfectly preserved Pompeii through destruction.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FIELDWORK -->
+<section id="fieldwork" class="section">
+  <div class="section-label fade-in">Methods</div>
+  <h2 class="section-title fade-in">Finding the Past</h2>
+  <p class="section-sub fade-in">Excavation is only one part of the process — and a destructive one at that. The sequence from research design to publication spans years, with most archaeologists spending far more time on analysis than digging.</p>
+  <div class="divider fade-in"></div>
+
+  <div class="grid-2 fade-in" style="margin-bottom:2.5rem">
+    <div class="fw-steps">
+      <div class="fw-step">
+        <div class="fw-num">1</div>
+        <div>
+          <h4>Research Design &amp; Literary Clues</h4>
+          <p style="font-size:.83rem;color:var(--cream-d)">Formulate a strategy. Search historical records, maps, and previous reports. Literary clues narrow the search area before a single trowel is lifted.</p>
+        </div>
+      </div>
+      <div class="fw-step">
+        <div class="fw-num">2</div>
+        <div>
+          <h4>Ground Survey &amp; Remote Sensing</h4>
+          <p style="font-size:.83rem;color:var(--cream-d)">Non-destructive assessment of the site. Identify what's there before committing to excavation. Sampling strategies include systematic transects and boustrophadon patterns (back-and-forth, "like the ox").</p>
+        </div>
+      </div>
+      <div class="fw-step">
+        <div class="fw-num">3</div>
+        <div>
+          <h4>Excavation</h4>
+          <p style="font-size:.83rem;color:var(--cream-d)">Destructive — can never be undone. Major ethical weight. Methods: Wheeler Box-Grid (balks for profiles), Open-Area excavation (best for single-period sites), Test Pits (exploratory). Context sheets record every layer in precise detail.</p>
+        </div>
+      </div>
+      <div class="fw-step">
+        <div class="fw-num">4</div>
+        <div>
+          <h4>Post-Excavation Analysis &amp; Publication</h4>
+          <p style="font-size:.83rem;color:var(--cream-d)">Most of an archaeologist's actual work. Artifact sorting, dating, environmental sampling, illustration, writing. The Harris Matrix organizes stratigraphy. Analysis turns raw data into historical knowledge that must be published for science to progress.</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="card" style="margin-bottom:1rem">
+        <h4 style="color:var(--gold);font-size:.9rem;margin-bottom:.6rem">⚡ LEGO Excavation — In-Class Lab</h4>
+        <p style="font-size:.83rem;color:var(--cream-d)">We excavated miniature LEGO sites using authentic Umm Al-Jimal Archaeological Project context recording sheets — the same forms Prof. Rohl uses in Jordan. The exercise revealed how much information must be captured: matrix type, color, texture, inclusions, relationships to adjacent contexts. Every layer is a separate "context" with its own story. Stratigraphy shows change over time vertically; horizontal exposure shows activity at a single moment.</p>
+      </div>
+      <div class="card">
+        <h4 style="color:var(--gold);font-size:.9rem;margin-bottom:.6rem">📐 Stratigraphy &amp; the Harris Matrix</h4>
+        <p style="font-size:.83rem;color:var(--cream-d)">The Law of Superposition: lower layers are older. But formation processes complicate this. The Harris Matrix is a visual diagram that maps the sequence of deposits across a site, showing which contexts are above, below, or contemporary with others — even when they can't be physically adjacent.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="methods-grid fade-in">
+    <div class="method-card">
+      <div class="method-tag">Remote Sensing</div>
+      <h4>Ground-Penetrating Radar (GPR)</h4>
+      <p>Emits radar pulses underground and maps reflections to produce 3D models of buried remains. Used at Forum Novum (Italy) to map an entire Roman street grid without excavation.</p>
+    </div>
+    <div class="method-card">
+      <div class="method-tag">Remote Sensing</div>
+      <h4>Magnetometry</h4>
+      <p>Detects magnetic distortions caused by kilns, hearths, and pits. Fired clay and burning dramatically alter the local magnetic field — visible to a magnetometer from the surface.</p>
+    </div>
+    <div class="method-card">
+      <div class="method-tag">Aerial Survey</div>
+      <h4>LiDAR</h4>
+      <p>Laser scanning that penetrates tree canopy to reveal digital elevation models of the ground below. Used at Caracol (Belize) to discover an entire hidden Maya city — changing estimates of ancient population size dramatically.</p>
+    </div>
+    <div class="method-card">
+      <div class="method-tag">Spatial Analysis</div>
+      <h4>GIS</h4>
+      <p>Geographic Information Systems store, manage, and analyze spatial data in layers. Used for mapping sites, modeling predictive distributions, and integrating remote sensing data into navigable maps.</p>
+    </div>
+    <div class="method-card">
+      <div class="method-tag">Surface Survey</div>
+      <h4>Systematic Transects</h4>
+      <p>Fieldwalkers move along predetermined lines across a landscape, recording what they find on the surface. Boustrophadon pattern (back-and-forth) ensures complete coverage. Sampling strategies balance coverage against resources.</p>
+    </div>
+    <div class="method-card">
+      <div class="method-tag">Lab Work</div>
+      <h4>Artifact Processing</h4>
+      <p>Sorting, cleaning, labeling, drawing, and cataloguing finds. The Archaeology Lab (HH 494) includes data entry, artifact organization, and document preservation — 10 hours of hands-on engagement with real archaeological materials.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DATING -->
+<section id="dating" class="section" style="background:var(--bg2);max-width:100%;padding:110px 0 80px">
+  <div style="max-width:1160px;margin:0 auto;padding:0 2rem">
+    <div class="section-label fade-in">Chronology</div>
+    <h2 class="section-title fade-in">Dating the Past</h2>
+    <p class="section-sub fade-in">Without dates, archaeology produces a jumbled pile of things. Chronological frameworks — both relative and absolute — give the past its sequence and meaning.</p>
+    <div class="divider fade-in"></div>
+
+    <div class="dating-grid fade-in">
+      <div class="dating-col">
+        <h3>Relative Dating</h3>
+        <div class="dating-item">
+          <div class="dating-dot"></div>
+          <div>
+            <h4>Stratigraphy</h4>
+            <p>Lower = older. The foundational method. Complicated by formation processes (intrusions, inversions), but still the first tool applied at any excavation.</p>
+          </div>
+        </div>
+        <div class="dating-item">
+          <div class="dating-dot"></div>
+          <div>
+            <h4>Typology</h4>
+            <p>Objects change style over time in recognizable ways. A pottery assemblage from an unknown deposit can be dated by comparing its forms to known sequences from dated sites.</p>
+          </div>
+        </div>
+        <div class="dating-item">
+          <div class="dating-dot"></div>
+          <div>
+            <h4>Seriation — "Battleship Curves"</h4>
+            <p>Plot the frequency of artifact types over time — they rise, peak, then decline in a shape resembling a battleship viewed from above. Sorts assemblages into chronological sequence.</p>
+          </div>
+        </div>
+        <div class="dating-item">
+          <div class="dating-dot"></div>
+          <div>
+            <h4>TPQ &amp; TAQ</h4>
+            <p><em>Terminus Post Quem</em>: the date <em>after which</em> a deposit formed (e.g., a coin minted in 50 CE cannot be buried before 50 CE). <em>Terminus Ante Quem</em>: the date <em>before which</em> the deposit must predate.</p>
+          </div>
+        </div>
+      </div>
+      <div class="dating-col">
+        <h3>Absolute Dating</h3>
+        <div class="dating-item">
+          <div class="dating-dot" style="background:var(--terra)"></div>
+          <div>
+            <h4>Dendrochronology — Tree-Ring Dating</h4>
+            <p>Annual rings in trees are counted and matched to known sequences. <strong>The most accurate dating method</strong> — annual precision. Limited to temperate zones and specific preserved wood. Also used to calibrate radiocarbon dates.</p>
+          </div>
+        </div>
+        <div class="dating-item">
+          <div class="dating-dot" style="background:var(--terra)"></div>
+          <div>
+            <h4>Radiocarbon (¹⁴C) Dating</h4>
+            <p>Carbon-14 decays at a constant rate. Half-life = <strong>5,730 years</strong>. Only dates <strong>organic materials</strong> (wood, bone, charcoal). Calibration is mandatory because atmospheric ¹⁴C concentration changes over time — calibration curves align radiocarbon years to calendar years.</p>
+          </div>
+        </div>
+        <div class="dating-item">
+          <div class="dating-dot" style="background:var(--terra)"></div>
+          <div>
+            <h4>Dating Systems: BC/AD vs BCE/CE vs BP</h4>
+            <p>BC/AD = Christian calendar. BCE/CE = secular equivalent. BP = Before Present, with "Present" fixed at 1950 (when radiocarbon dating was standardized). Knowing which system a source uses is essential to avoid confusion by 2,000 years.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="c14-visual fade-in" style="margin-top:2.5rem">
+      <div class="c14-title">¹⁴C Decay — Percentage Remaining Over Half-Life Periods</div>
+      <div class="c14-bar-wrap">
+        <div class="c14-bar-label"><span>Year 0 (death of organism)</span><span>100%</span></div>
+        <div class="c14-bar"><div class="c14-fill" data-width="100%" style="width:0"></div></div>
+      </div>
+      <div class="c14-bar-wrap">
+        <div class="c14-bar-label"><span>5,730 years later (1 half-life)</span><span>50%</span></div>
+        <div class="c14-bar"><div class="c14-fill" data-width="50%" style="width:0;background:linear-gradient(90deg,var(--terra),#9a6020)"></div></div>
+      </div>
+      <div class="c14-bar-wrap">
+        <div class="c14-bar-label"><span>11,460 years (2 half-lives)</span><span>25%</span></div>
+        <div class="c14-bar"><div class="c14-fill" data-width="25%" style="width:0;background:linear-gradient(90deg,#8b3010,#6a4010)"></div></div>
+      </div>
+      <div class="c14-bar-wrap">
+        <div class="c14-bar-label"><span>17,190 years (3 half-lives)</span><span>12.5%</span></div>
+        <div class="c14-bar"><div class="c14-fill" data-width="12.5%" style="width:0;background:linear-gradient(90deg,#5a2010,#3a2010)"></div></div>
+      </div>
+      <p style="font-size:.75rem;color:var(--muted);margin-top:.8rem;text-align:center">After ~50,000 years, too little ¹⁴C remains for reliable measurement — the effective limit of radiocarbon dating.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHO'S DEAD GAME -->
+<section id="whos-dead" style="background:var(--bg);max-width:100%;padding:110px 0 80px">
+  <div class="game-wrap">
+    <div class="game-header">
+      <div class="section-label">Interactive — Built for This Course</div>
+      <h2 class="section-title" style="text-align:center">Who's Dead?</h2>
+      <p style="color:var(--cream-d);max-width:580px;margin:0 auto 1rem;font-size:.92rem;text-align:center">A digital version of the class game. Examine the archaeological evidence — skeletal, contextual, temporal — and identify the individual. Based on real cases from the archaeological record.</p>
+      <div style="display:flex;justify-content:center;gap:1rem;margin-bottom:2rem;flex-wrap:wrap">
+        <div class="score-item"><span class="score-num" id="score-solved">0</span><span class="score-label">Solved</span></div>
+        <div class="score-item"><span class="score-num" id="score-total">5</span><span class="score-label">Cases</span></div>
+      </div>
+      <div style="background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:1rem 1.5rem;display:inline-block;font-size:.8rem;color:var(--muted);max-width:600px;text-align:left">
+        <strong style="color:var(--cream-d)">How to play:</strong> Select a case, read the clues, then click <em>Reveal Identity</em> to see the answer. Each case connects directly to concepts covered in IDIS 240.
+      </div>
+    </div>
+
+    <div class="game-layout">
+      <div>
+        <div class="case-list" id="case-list">
+          <!-- populated by JS -->
+        </div>
+      </div>
+      <div class="case-panel" id="case-panel">
+        <div style="display:flex;align-items:center;justify-content:center;height:100%;padding:3rem;text-align:center;color:var(--muted)">
+          <div>
+            <div style="font-size:3rem;margin-bottom:1rem">🦴</div>
+            <p>Select a case from the left to begin your investigation.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WIDER TOPICS -->
+<section id="topics" class="section">
+  <div class="section-label fade-in">Post-Midterm Coverage</div>
+  <h2 class="section-title fade-in">Beyond the Dig Site</h2>
+  <p class="section-sub fade-in">The second half of the semester expanded from methods to meaning — what the material record tells us about ancient environments, people's bodies, trade networks, belief systems, and our responsibilities as inheritors of the past.</p>
+  <div class="divider fade-in"></div>
+
+  <div class="topic-grid fade-in">
+    <div class="topic-card">
+      <div class="topic-emoji">🌿</div>
+      <h4>Environmental Archaeology</h4>
+      <p>Pollen analysis, seed assemblages, faunal remains, and soil chemistry reveal ancient climates and human-environment interactions. The interplay between sustainable land use and societal collapse — visible in the archaeological record across civilizations.</p>
+    </div>
+    <div class="topic-card">
+      <div class="topic-emoji">⚗️</div>
+      <h4>Artifacts, Production &amp; Trade</h4>
+      <p>The Uluburun shipwreck (c. 1300 BCE, Turkey) demonstrates a Late Bronze Age globalized trade network — copper from Cyprus, tin from unknown sources, glass from Egypt, ivory from Africa, Mycenaean swords. Production chains visible in material culture. The iPhone lifecycle as an analogy: acquisition → manufacturing → use → deposition.</p>
+    </div>
+    <div class="topic-card">
+      <div class="topic-emoji">💀</div>
+      <h4>Bioarchaeology</h4>
+      <p>Reading the body as evidence: age, sex, health, diet, activity patterns, and cause of death from skeletal and soft tissue remains. Isotope analysis traces migration. DNA sequences reconstruct kinship and population movements. Every skeleton is a life story compressed into bone.</p>
+    </div>
+    <div class="topic-card">
+      <div class="topic-emoji">🧠</div>
+      <h4>Cognitive Archaeology &amp; Belief</h4>
+      <p>How do we identify religion, ritual, and symbolic thought in the material record? Evidence of intentional burial, grave goods, rock art, and sacred spaces suggest cognitive complexity far earlier than once assumed. Archaeology reaches toward the inner life of past peoples.</p>
+    </div>
+    <div class="topic-card">
+      <div class="topic-emoji">⚖️</div>
+      <h4>Ethics, Repatriation &amp; CRM</h4>
+      <p>Cultural Resource Management mandates protection of heritage during development — the developer pays. NAGPRA (Native American Graves Protection and Repatriation Act). The Elgin Marbles debate. Who owns the past? The material record is a public resource, and archaeologists are its stewards, not its owners.</p>
+    </div>
+    <div class="topic-card">
+      <div class="topic-emoji">🌍</div>
+      <h4>Heritage &amp; World Archaeology</h4>
+      <p>UNESCO World Heritage Sites. The Umm Al-Jimal Archaeological Project (inscribed 2024) in Jordan — a case study in how academic archaeology, local communities, and international heritage frameworks intersect. Heritage as living relationship with the past, not just museum pieces.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAITH & ARCHAEOLOGY -->
+<section id="faith" class="section" style="background:var(--bg2);max-width:100%;padding:110px 0 80px">
+  <div style="max-width:1160px;margin:0 auto;padding:0 2rem">
+    <div class="section-label fade-in">Calvin University Context</div>
+    <h2 class="section-title fade-in">Archaeology &amp; Christian Faith</h2>
+    <p class="section-sub fade-in">One of the most distinctive aspects of this course at Calvin — two full sessions devoted to the relationship between the archaeological record and Christian scripture, heritage, and interpretation.</p>
+    <div class="divider fade-in"></div>
+
+    <div class="faith-box fade-in">
+      <div class="faith-col">
+        <h4>The Tension: When Evidence Challenges Expectation</h4>
+        <p>Kathleen Kenyon's excavations at Jericho — one of the most theologically charged sites in archaeology — pushed the dates of occupation back by several centuries compared to a literal reading of the biblical account. This created significant tension between faith communities hoping for archaeological confirmation and the evidence as Kenyon found it.</p>
+        <p style="margin-top:.8rem">The lesson is not that archaeology disproves faith, but that evidence must be followed wherever it leads. Pseudo-archaeology, including faith-motivated cherry-picking of archaeological data, fails both intellectually and spiritually.</p>
+        <div class="faith-quote">"A brave space is a space where grace and truth abound." — Prof. Rohl, course syllabus</div>
+      </div>
+      <div class="faith-col">
+        <h4>Archaeology as Theological Resource</h4>
+        <p>At the same time, archaeology has enormously enriched our understanding of the biblical world. The Dead Sea Scrolls. The Siloam Inscription. Umm Al-Jimal's early Christian community, built in basalt and inscription. The physical reality of ancient spaces deepens, not diminishes, the weight of historical religious claims.</p>
+        <p style="margin-top:.8rem">Prof. Rohl's own work at Umm Al-Jimal — a UNESCO World Heritage Site on the Byzantine-Arab borderland — is itself an example of how archaeological inquiry and Christian heritage coexist. The site's churches, inscriptions in Greek and early Arabic, and evidence of a multicultural transition period are living testimony to the complexity of early Christian history.</p>
+        <div class="faith-quote">Helena Augusta identified pilgrimage sites; Nabonidus restored ancient temples. The impulse to reach back and honor the past is itself ancient.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REFLECTION -->
+<section id="reflection" class="section">
+  <div class="section-label fade-in">Personal Growth</div>
+  <h2 class="section-title fade-in">What This Course Changed</h2>
+  <p class="section-sub fade-in">Three shifts in how I think about the past, evidence, and the human story — produced by a semester of paying attention.</p>
+  <div class="divider fade-in"></div>
+
+  <div class="reflection-grid fade-in">
+    <div class="reflection-card">
+      <div class="reflection-num">01</div>
+      <h4>Context is Everything — Literally</h4>
+      <p>Before this course, I thought archaeology was about finding impressive objects. Now I understand that an artifact without context is almost meaningless — a ripped-out page from a book. The LEGO excavation made this visceral: removing an object from its layer without recording the matrix, provenience, and associations destroys irreplaceable information. Looting isn't just theft. It's the deliberate erasure of history.</p>
+    </div>
+    <div class="reflection-card">
+      <div class="reflection-num">02</div>
+      <h4>97% Is Unwritten</h4>
+      <p>The single statistic that reoriented how I think about human history: for about 97% of the time our species has existed, there were no written records. Everything we know about that 97% comes from archaeology alone. Writing-centric history is a recent and culturally narrow lens. Archaeology is the discipline that gives voice to the vast majority of human experience — including peoples who have been deliberately silenced or marginalized.</p>
+    </div>
+    <div class="reflection-card">
+      <div class="reflection-num">03</div>
+      <h4>Evidence Over Conclusion</h4>
+      <p>Processual archaeology overreached. Pseudo-archaeology starts at the destination. The lesson running through every part of this course — from Kenyon at Jericho to the debate over Paleolithic scavenging vs. hunting — is that good reasoning follows the evidence wherever it leads, even when the conclusion is uncomfortable. That's not just a methodological principle. It's an ethical one.</p>
+    </div>
+  </div>
+
+  <!-- Arthur's O'on note -->
+  <div class="card fade-in" style="margin-top:1.5rem">
+    <h4 style="color:var(--gold);font-size:.9rem;margin-bottom:.5rem">⚗️ Arthur's O'on — A Roman Folly in Scotland</h4>
+    <p style="font-size:.83rem;color:var(--cream-d)">A small Roman domed structure — long demolished — that stood near the Antonine Wall in Scotland, within the area of Prof. Rohl's own earlier research. It appeared in our class discussion of processual and post-processual interpretation: the same physical remains can be read as a temple, a victory monument, or a surveying datum depending on interpretive framework. The building is gone; the argument about what it meant continues.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-title">IDIS 240 — Introduction to Archaeology</div>
+  <div class="footer-meta">
+    Ephraim Dykstra &nbsp;·&nbsp; Spring 2026 &nbsp;·&nbsp; Calvin University<br>
+    Prof. Darrell J. Rohl &nbsp;·&nbsp; Hiemenga Hall 334<br>
+    <a href="https://darrellrohl.com" style="color:var(--gold);text-decoration:none">darrellrohl.com</a> &nbsp;·&nbsp; Umm Al-Jimal Archaeological Project (UNESCO WHS 2024)
+  </div>
+  <div class="footer-ai">
+    <strong style="color:var(--cream-d)">AI Disclosure:</strong> This portfolio was assembled with the assistance of Claude (Anthropic) for structure and design. All course content, notes, observations, and reflections reflect material engaged with directly in IDIS 240. Used with awareness of the course's updated policy on AI tools and in-class discussions of technology in archaeological practice.
+  </div>
+</footer>
+
+<script>
+// ── HERO CANVAS (drifting dust particles) ──────────────────────────────────
+(function(){
+  const canvas = document.getElementById('hero-canvas');
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  function resize(){ canvas.width=window.innerWidth; canvas.height=window.innerHeight; }
+  resize();
+  window.addEventListener('resize', resize);
+
+  for(let i=0;i<120;i++){
+    particles.push({
+      x: Math.random()*canvas.width,
+      y: Math.random()*canvas.height,
+      r: Math.random()*1.8+.4,
+      vx: (Math.random()-.5)*.3,
+      vy: (Math.random()-.5)*.2,
+      alpha: Math.random()*.4+.1
+    });
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach(p=>{
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle = `rgba(200,160,80,${p.alpha})`;
+      ctx.fill();
+      p.x += p.vx;
+      p.y += p.vy;
+      if(p.x<0)p.x=canvas.width;
+      if(p.x>canvas.width)p.x=0;
+      if(p.y<0)p.y=canvas.height;
+      if(p.y>canvas.height)p.y=0;
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// ── INTERSECTION OBSERVER (fade-in) ────────────────────────────────────────
+const fadeEls = document.querySelectorAll('.fade-in');
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+},{threshold:.1});
+fadeEls.forEach(el=>observer.observe(el));
+
+// ── NAV ACTIVE HIGHLIGHTING ────────────────────────────────────────────────
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  sections.forEach(s=>{
+    if(window.scrollY >= s.offsetTop - 100) cur = s.id;
+  });
+  navLinks.forEach(a=>{
+    a.classList.toggle('active', a.getAttribute('href')==='#'+cur);
+  });
+});
+
+// ── C14 BARS ───────────────────────────────────────────────────────────────
+const c14Observer = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      document.querySelectorAll('.c14-fill').forEach(bar=>{
+        bar.style.width = bar.dataset.width;
+      });
+    }
+  });
+},{threshold:.3});
+const c14Vis = document.querySelector('.c14-visual');
+if(c14Vis) c14Observer.observe(c14Vis);
+
+// ── WHO'S DEAD GAME DATA ───────────────────────────────────────────────────
+const CASES = [
+  {
+    id:1,
+    codename:'The Alpine Traveler',
+    date:'c. 3300 BCE',
+    region:'Ötztal Alps, Austria/Italy',
+    clues:[
+      {cat:'Physical Evidence', text:'Male, approximately 45 years old at time of death'},
+      {cat:'Physical Evidence', text:'14 groups of tattoo marks along joints — possibly therapeutic'},
+      {cat:'Physical Evidence', text:'An arrowhead embedded in the left shoulder — entry wound visible'},
+      {cat:'Contextual Clues', text:'Found at 3,210m elevation, sealed in glacial ice'},
+      {cat:'Contextual Clues', text:'Equipment: complete bow with arrows, copper-bladed axe (prestige item), birch containers, fire kit'},
+      {cat:'Temporal Clues', text:'Last meal included red deer, einkorn wheat, and traces of alpine herbs'},
+      {cat:'Temporal Clues', text:'Calibrated radiocarbon date: 5,300 years before present'}
+    ],
+    answer:{
+      name:'Ötzi the Iceman',
+      period:'Chalcolithic (Copper Age)',
+      death:'Homicide — shot in the back with an arrow, possibly fleeing an attacker',
+      why:'Ötzi is one of the best-preserved natural human mummies in the world, kept frozen in permafrost — a perfect example of cold/dry exceptional preservation discussed in the course. His copper axe indicates high status. Forensic analysis reconstructed his final hours with remarkable detail.'
+    }
+  },
+  {
+    id:2,
+    codename:'The Bog Nobleman',
+    date:'c. 362–175 BCE',
+    region:'County Offaly, Ireland',
+    clues:[
+      {cat:'Physical Evidence', text:'Male, approximately 25–30 years old; exceptionally tall (~1.98m / 6\'6")'},
+      {cat:'Physical Evidence', text:'Manicured fingernails — indicates no manual labor'},
+      {cat:'Physical Evidence', text:'Nipples were surgically removed before death (ritual significance)'},
+      {cat:'Contextual Clues', text:'Arms bound above the elbows with hazel rods'},
+      {cat:'Contextual Clues', text:'Three separate killing methods evident: stabbing, strangulation, and decapitation'},
+      {cat:'Temporal Clues', text:'Found in anaerobic peat bog — no oxygen; skin perfectly preserved, organs removed'},
+      {cat:'Temporal Clues', text:'Last meal: wheat and barley porridge with plant matter from winter/early spring'}
+    ],
+    answer:{
+      name:'Old Croghan Man',
+      period:'Iron Age (~362–175 BCE, radiocarbon dated)',
+      death:'Ritual triple killing — likely a sacrificed king or failed leader',
+      why:'Old Croghan Man is a classic example of anaerobic/waterlogged exceptional preservation discussed in the course. The "triple death" pattern is associated across Iron Age Europe with sacrifice of sacred kings. His high status (manicured hands, tall stature, quality food) suggests he was important — possibly ritually killed after a failed kingship.'
+    }
+  },
+  {
+    id:3,
+    codename:'The Merchant of the Forum',
+    date:'24 August, 79 CE',
+    region:'Pompeii, Campania, Italy',
+    clues:[
+      {cat:'Physical Evidence', text:'Adult, body void preserved as a plaster cast in hardened volcanic matrix'},
+      {cat:'Physical Evidence', text:'Position: crouching with hands raised toward face'},
+      {cat:'Physical Evidence', text:'No skeletal trauma — death was sudden and external'},
+      {cat:'Contextual Clues', text:'Location: near the Via dell\'Abbondanza in central Pompeii'},
+      {cat:'Contextual Clues', text:'Bronze coins and a glass unguentarium (perfume flask) found nearby'},
+      {cat:'Contextual Clues', text:'High-quality woolen fabric preserved as ash impression'},
+      {cat:'Temporal Clues', text:'Deposit: alternating layers of pumice, ash, and pyroclastic surge material — all from a single event'}
+    ],
+    answer:{
+      name:'A Pompeii Victim',
+      period:'Roman Imperial Period, 79 CE',
+      death:'Asphyxiation from volcanic gases and pyroclastic surge from Vesuvius',
+      why:'Pompeii appears throughout this course — as one of the earliest intentional excavations, as a textbook N-Transform example (natural disaster as a formation process), and as an illustration of how preservation by destruction can reveal extraordinary detail. The plaster cast technique (developed by Fiorelli in the 19th century) made these voids into forensic records of the exact moment of death.'
+    }
+  },
+  {
+    id:4,
+    codename:'The Bronze Age Mariner',
+    date:'c. 1300 BCE',
+    region:'Off Uluburun (Kaş), Turkey — 44m depth',
+    clues:[
+      {cat:'Physical Evidence', text:'Skeletal remains of at least two individuals recovered from the wreck'},
+      {cat:'Physical Evidence', text:'No formal burial — bones scattered among fallen cargo'},
+      {cat:'Contextual Clues', text:'Ship timbers: fir, repaired at multiple ports; small vessel, heavily loaded'},
+      {cat:'Contextual Clues', text:'Cargo: 10 tons of Cypriot copper ingots (ox-hide shape), tin ingots sufficient to alloy all copper into bronze'},
+      {cat:'Contextual Clues', text:'Additional cargo: Canaanite jars, Mycenaean swords, Egyptian gold scarabs, glass ingots, ivory, ebony, terebinth resin'},
+      {cat:'Contextual Clues', text:'Royal Egyptian scarab inscribed with the cartouche of Nefertiti'},
+      {cat:'Temporal Clues', text:'Dendrochronology of ship timbers: felled c. 1316 BCE; voyage c. 1300 BCE'}
+    ],
+    answer:{
+      name:'A Uluburun Crew Member',
+      period:'Late Bronze Age (~1300 BCE)',
+      death:'Drowning or crushing in a storm — ship sank rapidly with full cargo',
+      why:'The Uluburun shipwreck, discussed in the Artifacts, Production, and Trade session, is among the most important Bronze Age finds ever made. Its astonishing international cargo — Egypt, Canaan, Mycenae, Cyprus, and the Levant all represented — revealed a truly globalized Bronze Age Mediterranean trade network that completely changed scholars\' understanding of late 2nd-millennium BCE exchange systems.'
+    }
+  },
+  {
+    id:5,
+    codename:'The Basalt Boundary Keeper',
+    date:'c. 500–700 CE',
+    region:'Umm Al-Jimal, northern Jordan',
+    clues:[
+      {cat:'Physical Evidence', text:'Adult, burial orientation east-west — consistent with Christian practice'},
+      {cat:'Physical Evidence', text:'Skeletal evidence of arthritis in major joints — likely elderly at death'},
+      {cat:'Physical Evidence', text:'Worked bone tools and loom weights found within compound'},
+      {cat:'Contextual Clues', text:'Interred within a multi-room basalt stone compound adjacent to a cathedral structure'},
+      {cat:'Contextual Clues', text:'Bilingual inscriptions in Greek and early Arabic on adjacent walls'},
+      {cat:'Contextual Clues', text:'Basalt grinding stone worn flat from extensive use; grain storage bins in adjacent room'},
+      {cat:'Temporal Clues', text:'Stratigraphy places burial within Byzantine-to-early-Islamic transition period; ceramic assemblage confirms date'}
+    ],
+    answer:{
+      name:'A Villager of Umm Al-Jimal',
+      period:'Byzantine / Early Islamic transition (c. 500–700 CE)',
+      death:'Natural causes in old age — evidence of chronic joint disease',
+      why:'Umm Al-Jimal is Prof. Rohl\'s own UNESCO World Heritage Site (inscribed 2024), co-directed by him since 2005. This site on the Roman/Byzantine frontier in Jordan demonstrates how archaeology reveals ordinary lives at the intersection of empires and religions. The bilingual Greek/Arabic inscriptions reflect the multicultural reality of a region transitioning from Byzantine to early Islamic rule — a complexity no single historical narrative captures.'
+    }
+  }
+];
+
+let solvedCases = new Set();
+let activeCase = null;
+
+function renderCaseList(){
+  const list = document.getElementById('case-list');
+  list.innerHTML = CASES.map(c=>`
+    <button class="case-btn${activeCase===c.id?' active':''}${solvedCases.has(c.id)?' solved':''}" onclick="selectCase(${c.id})">
+      <div class="case-num">Case #${c.id}</div>
+      <div class="case-name">${c.codename}</div>
+      <div class="case-status">${solvedCases.has(c.id)?'✓ Identity Revealed':'Unresolved'} · ${c.date}</div>
+    </button>
+  `).join('');
+}
+
+function groupClues(clues){
+  const groups = {};
+  clues.forEach(cl=>{
+    if(!groups[cl.cat]) groups[cl.cat] = [];
+    groups[cl.cat].push(cl.text);
+  });
+  return groups;
+}
+
+function selectCase(id){
+  activeCase = id;
+  const c = CASES.find(x=>x.id===id);
+  const groups = groupClues(c.clues);
+  const isRevealed = solvedCases.has(id);
+
+  const clueHtml = Object.entries(groups).map(([cat,items])=>`
+    <div class="clue-section">
+      <div class="clue-section-label">${cat}</div>
+      <div class="clue-list">
+        ${items.map(t=>`<div class="clue-chip">${t}</div>`).join('')}
+      </div>
+    </div>
+  `).join('');
+
+  const revealHtml = `
+    <div class="reveal-panel${isRevealed?' show':''}" id="reveal-${id}">
+      <div class="reveal-name">${c.answer.name}</div>
+      <div class="reveal-period">${c.answer.period}</div>
+      <p class="reveal-desc"><strong>Cause of death:</strong> ${c.answer.death}</p>
+      <div class="reveal-connection"><strong>Course connection:</strong> ${c.answer.why}</div>
+    </div>
+  `;
+
+  document.getElementById('case-panel').innerHTML = `
+    <div class="case-panel-header">
+      <span class="case-stamp">Case File #${c.id}</span>
+      <div class="case-panel-title">${c.codename}</div>
+      <div style="margin-left:auto;font-size:.78rem;color:var(--muted)">${c.region} · ${c.date}</div>
+    </div>
+    <div class="case-panel-body">
+      ${clueHtml}
+      <div class="game-actions">
+        <button class="btn btn-primary" onclick="revealCase(${id})">${isRevealed?'✓ Identity Known':'Reveal Identity'}</button>
+        <button class="btn btn-secondary" onclick="selectCase(${id})">Review Clues</button>
+      </div>
+      ${revealHtml}
+    </div>
+  `;
+  renderCaseList();
+}
+
+function revealCase(id){
+  solvedCases.add(id);
+  document.getElementById(`reveal-${id}`).classList.add('show');
+  document.getElementById('score-solved').textContent = solvedCases.size;
+  renderCaseList();
+  // update button
+  const btns = document.querySelectorAll('.btn-primary');
+  btns.forEach(b=>{ if(b.textContent.includes('Reveal')) b.textContent='✓ Identity Known'; });
+}
+
+renderCaseList();
+
+// ── INITIAL STATE ──────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', ()=>{
+  document.querySelector('.hero-inner').classList.add('visible');
+});
+</script>
+</body>
+</html>
